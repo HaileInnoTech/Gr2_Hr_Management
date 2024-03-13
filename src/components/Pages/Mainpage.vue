@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="relative isolate overflow-hidden bg-white py-10 sm:py-18">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <h2
@@ -39,4 +39,4 @@ setInterval(() => {
   currentTime.value = new Date().toLocaleTimeString();
   currentTime.value = curent;
 }, 1000);
-</script> -->
+</script>

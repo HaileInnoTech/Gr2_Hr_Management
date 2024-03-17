@@ -87,7 +87,14 @@
 </template>
 
 <script>
-export default {};
+import { useRouter } from "vue-router";
+export default {
+  methods: {
+    gotoDashboard() {
+      this.$router.push("/dashboard");
+    },
+  },
+};
 </script>
 
 <style></style>

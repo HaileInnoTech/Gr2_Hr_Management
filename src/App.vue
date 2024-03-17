@@ -1,10 +1,5 @@
 <template>
-  <div>
-  <navigation/>
-  </div>
-  <div>
-  <mainpage/>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -13,7 +8,7 @@ import Navigation from "./components/Navigate/Navigation.vue";
 import Mainpage from "./components/Pages/Mainpage.vue";
 
 export default {
-  components: { Login, Navigation, Mainpage},
+  components: { Login, Navigation, Mainpage },
 };
 </script>
 

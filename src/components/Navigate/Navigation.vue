@@ -29,23 +29,23 @@
           </svg>
         </button>
       </div>
-      <div class="w-full block flex-grow  lg:flex lg:items-center lg:w-auto">
-        <div class="text-base text-white lg:flex-grow flex  lg:justify-end   ">
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-base text-white lg:flex-grow flex lg:justify-end">
           <a
             href="#responsive-header"
-            class="block lg:border-r-2 mt-4 mr-2 lg:inline-block lg:mt-0 lg:px-20 text-white-800 hover:text-white    hover:border-white"
+            class="block lg:border-r-2 mt-4 mr-2 lg:inline-block lg:mt-0 lg:px-20 text-white-800 hover:text-white hover:border-white"
           >
             Employee Management
           </a>
           <a
-            href="#responsive-header" 
-            class="block mt-4 lg:inline-block lg:border-r-2 mr-2 lg:mt-0 lg:px-20 text-white-800 hover:text-white "
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:border-r-2 mr-2 lg:mt-0 lg:px-20 text-white-800 hover:text-white"
           >
             Recruitment
           </a>
           <a
             href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0  lg:px-20 text-white-800 hover:text-white"
+            class="block mt-4 lg:inline-block lg:mt-0 lg:px-20 text-white-800 hover:text-white"
           >
             Report and Analysis
           </a>
@@ -60,10 +60,14 @@
       </div>
     </nav>
     <div>
-        <img src="../Navigate/image.png" alt="" width="100%" height="80%" class="">
+      <img
+        src="../Navigate/image.png"
+        alt=""
+        width="100%"
+        height="80%"
+        class=""
+      />
     </div>
-
-
   </header>
 </template>
 

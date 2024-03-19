@@ -33,6 +33,34 @@
   </div>
 
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div
+      class="relative flex items-center my-5 w-full h-12 rounded-full focus-within:shadow-lg bg-white overflow-hidden border border-gray-300"
+    >
+      <div class="grid place-items-center h-full w-12 text-gray-300">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </div>
+
+      <input
+        class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+        type="text"
+        v-model="searchName"
+        placeholder="Search employee by Name"
+      />
+    </div>
+
     <ul class="grid grid-cols-1 sm:grid-cols-4 gap-4">
       <li class=" " v-for="(item, index) in employeeData" :key="index">
         <div class="max-w-xs">
@@ -139,7 +167,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, compile } from "vue";
+import { ref, onMounted, computed, compile, watch } from "vue";
 import axios from "axios";
 
 const currentTime = ref(new Date().toLocaleTimeString());
@@ -147,7 +175,7 @@ const currentTime = ref(new Date().toLocaleTimeString());
 setInterval(() => {
   currentTime.value = new Date().toLocaleTimeString();
 }, 1000);
-
+const searchName = ref("");
 const employeeData = ref([]);
 let start = ref(0);
 let end = ref(0);
@@ -156,6 +184,8 @@ let itemperPage = ref(8);
 let emploteeQty = ref();
 let totalPage = ref();
 let data = ref();
+let rawdata = ref();
+
 onMounted(async () => {
   try {
     const response = await axios.get("http://localhost:4000/employeedata");
@@ -165,6 +195,7 @@ onMounted(async () => {
 
     start.value = (currentPage.value - 1) * itemperPage.value;
     end.value = currentPage.value * itemperPage.value;
+    rawdata.value = response.data;
     data = response.data;
     employeeData.value = data.slice(start.value, end.value);
   } catch (error) {
@@ -217,6 +248,31 @@ function prePage() {
     employeeData.value = data.slice(start.value, end.value);
   }
 }
+const filterInput = computed(() => {
+  const newdata = [];
+  if (!searchName.value || !searchName.value.trim()) {
+    return employeeData.value;
+  } else {
+    const searchTerm = searchName.value.trim().toLowerCase();
+    const result = rawdata.value.filter((item, key) => {
+      if (
+        item.email.toLowerCase().includes(searchTerm) ||
+        item.firstName.toLowerCase().includes(searchTerm) ||
+        item.position.toLowerCase().includes(searchTerm)
+      ) {
+        newdata.push(item);
+      }
+    });
+    return newdata;
+  }
+});
+watch(searchName, (newValue, oldValue) => {
+  if (newValue === "") {
+    employeeData.value = data.slice(start.value, end.value);
+  } else {
+    employeeData.value = filterInput.value;
+  }
+});
 </script>
 
 <style>

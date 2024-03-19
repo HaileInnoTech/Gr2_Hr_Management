@@ -217,7 +217,7 @@ export default {
     this.email = this.$route.params.email;
 
     const userData = await axios
-      .get("http://localhost:4000/employeedatabyemail", {
+      .get("https://gr2-hr-management-be.onrender.com/employeedatabyemail", {
         params: {
           email: this.email,
         },
@@ -231,7 +231,7 @@ export default {
     this.data = userData;
 
     const userAttendance = await axios
-      .get("http://localhost:4000/counattendancebyemail", {
+      .get("https://gr2-hr-management-be.onrender.com/counattendancebyemail", {
         params: {
           email: this.email,
         },

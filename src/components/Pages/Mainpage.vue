@@ -1,37 +1,4 @@
 <template>
-  <div class="relative isolate overflow-hidden bg-white py-10 sm:py-18">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <h2
-        class="text-4xl font-bold tracking-tight text-blue flex justify-center sm:text-6xl"
-      >
-        HR Management
-      </h2>
-
-      <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-        <div
-          class="grid grid-cols-1 gap-x-8 gap-y-6 px-40 text-base lg:flex lg:justify-between lg: leading-7 text-black sm:grid-cols-2 md:flex lg:gap-x-10"
-        >
-          <div class="">
-            <h3 class="font-semibold flex justify-center">
-              Employee Checked In
-            </h3>
-            <div class="flex justify-center">349</div>
-          </div>
-          <div class="">
-            <h3 class="font-semibold flex justify-center">Time</h3>
-            <div class="flex justify-center">{{ currentTime }}</div>
-          </div>
-          <div class="">
-            <h3 class="font-semibold flex justify-center">
-              Employee Checked Out
-            </h3>
-            <div class="flex justify-center">349</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div
       class="relative flex items-center my-5 w-full h-12 rounded-full focus-within:shadow-lg bg-white overflow-hidden border border-gray-300"
@@ -106,7 +73,6 @@
                   class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
                   >View Profile</router-link
                 >
-                >
               </div>
             </div>
           </div>
@@ -170,11 +136,6 @@
 import { ref, onMounted, computed, compile, watch } from "vue";
 import axios from "axios";
 
-const currentTime = ref(new Date().toLocaleTimeString());
-// Update current time every second
-setInterval(() => {
-  currentTime.value = new Date().toLocaleTimeString();
-}, 1000);
 const searchName = ref("");
 const employeeData = ref([]);
 let start = ref(0);
@@ -188,7 +149,9 @@ let rawdata = ref();
 
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:4000/employeedata");
+    const response = await axios.get(
+      "https://gr2-hr-management-be.onrender.com/employeedata"
+    );
     emploteeQty = response.data.length;
 
     totalPage.value = Math.ceil(emploteeQty / itemperPage.value);

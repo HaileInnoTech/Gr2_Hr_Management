@@ -9,29 +9,30 @@
         <router-link
           to="/dashboard/menu/employee/data"
           class="flex-row justify-center w-full border-r-2 border-gray-900"
-          exact
+          
+        >
+          <div class="text-2xl flex justify-center w-full" exact
           :class="{
-            'border-2 border-gray-900':
+            'bg-blue-500':
               $route.path === '/dashboard/menu/employee/data' ||
               $route.path.startsWith(
                 '/dashboard/menu/employee/data/individual'
               ),
-          }"
-        >
-          <div class="text-2xl flex justify-center w-full">
+          }">
             Employee Information
           </div>
         </router-link>
         <router-link
           to="/dashboard/menu/employee/payroll"
           class="flex-row justify-center w-full border-r-2 border-gray-900"
+         
+        >
+          <div class="text-2xl flex justify-center"  
           exact
           :class="{
-            'border-2 border-gray-900':
+            'bg-blue-500':
               $route.path === '/dashboard/menu/employee/payroll',
-          }"
-        >
-          <div class="text-2xl flex justify-center">Payroll Mangement</div>
+          }">Payroll Mangement</div>
         </router-link>
         <div class="flex-row justify-center w-full">
           <div class="text-2xl flex justify-center">Overall Tracking</div>

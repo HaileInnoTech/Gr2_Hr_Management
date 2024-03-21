@@ -38,7 +38,7 @@
 
 <script>
 import Navigation from "../Navigate/Navigation.vue";
-import { ref } from "vue";
+
 export default {
   components: {
     Navigation,

@@ -16,32 +16,38 @@ const routes = [
     component: Login,
   },
   {
-    path: "/dashboard",
+    path: "/dashboard/:email?/:role?",
     component: Mainlayout,
+    name: "Mainlayout",
+    props: true,
     children: [
       {
-        path: "/dashboard/menu",
+        path: "/dashboard/:email?/:role?/menu",
         component: Menu,
+        name: "Menu",
+        props: true,
       },
     ],
   },
   {
-    path: "/dashboard/menu/employee",
+    path: "/dashboard/:email?/:role?/menu/employee",
     component: EmployeeLayout,
     children: [
       {
-        path: "/dashboard/menu/employee/data",
+        path: "/dashboard/:email?/:role?/menu/employee/data",
         component: Mainpage,
+        name: "Mainpage",
       },
       {
-        path: "/dashboard/menu/employee/data/individual/:email?",
+        path: "/dashboard/:email?/:role?/menu/employee/data/individual/:curEmp?",
         component: Individual,
         name: "Individual",
         props: true,
       },
       {
-        path: "/dashboard/menu/employee/payroll",
+        path: "/dashboard/:email?/:role?/menu/employee/payroll",
         component: Payroll,
+        name: "Payroll",
       },
     ],
   },

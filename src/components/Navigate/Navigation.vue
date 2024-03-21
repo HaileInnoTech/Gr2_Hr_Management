@@ -30,6 +30,14 @@
         </button>
       </div>
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-base text-white lg:flex-grow flex lg:justify-start">
+          <div
+            class="block lg:inline-block lg:mt-0 lg:px-20 text-white-800 hover:text-white hover:border-white"
+          >
+            {{ role.toUpperCase() }}
+          </div>
+        </div>
+
         <div class="text-base text-white lg:flex-grow flex lg:justify-end">
           <a
             href="#responsive-header"
@@ -51,11 +59,12 @@
           </a>
         </div>
         <div>
-          <a
-            href="#"
-            class="inline-block text-xl px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-white-500 hover:bg-white mt-4 lg:mt-0"
-            >Exit</a
+          <button
+            @click="handleLogout"
+            class="inline-block text-xl px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-white-500 mt-4 lg:mt-0"
           >
+            Log Out
+          </button>
         </div>
       </div>
     </nav>
@@ -72,7 +81,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      email: "",
+      role: "",
+    };
+  },
+
+  methods: {
+    handleLogout() {
+      localStorage.removeItem("accessToken");
+      this.$router.push("/");
+    },
+  },
+  created() {
+    this.email = localStorage.getItem("email");
+    this.role = localStorage.getItem("role");
+  },
+};
 </script>
 
 <style></style>

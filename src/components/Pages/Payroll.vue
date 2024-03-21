@@ -52,11 +52,10 @@
             <td class="py-3 px-4">{{ item.email }}</td>
             <td class="py-3 px-4">{{ item.base_salary }}</td>
             <td class="py-3 px-4">{{ item.total_work_hour }}</td>
-            <td class="py-3 px-4  flex flex-row justify-end">
-
-              <div class="basic-1/2 ">{{ item.bonus }}</div>
+            <td class="py-3 px-4 flex flex-row justify-end">
+              <div class="basic-1/2">{{ item.bonus }}</div>
               <button
-                class="  pl-2 basis-1/2 justify-end flex"
+                class="pl-2 basis-1/2 justify-end flex"
                 @click="handleBonus(item.email)"
               >
                 <img src="../../assets/pencil.png" alt="" class="h-5 w-5" />
@@ -72,13 +71,6 @@
             </td>
           </tr>
           <!-- Add more rows as needed -->
-          <tr class="border-b border-blue-gray-200">
-            <td class="py-3 px-4 font-medium">Total Wallet Value</td>
-            <td class="py-3 px-4"></td>
-            <td class="py-3 px-4"></td>
-            <td class="py-3 px-4 font-medium">$22525.00</td>
-            <td class="py-3 px-4"></td>
-          </tr>
         </tbody>
       </table>
     </div>
@@ -94,22 +86,39 @@ export default {
     return {
       searchName: "",
       payrollData: [],
+      rawData: [],
     };
   },
   created() {
-    this.fetchPayrollData();
     console.log(this.payrollData.email);
+    const accessToken = localStorage.getItem("accessToken");
+    console.log(accessToken);
+    this.fetchPayrollData(accessToken);
   },
   methods: {
-    async fetchPayrollData() {
+    async fetchPayrollData(accessToken) {
       try {
+        console.log(accessToken);
+
         const response = await axios.get(
-          "https://gr2-hr-management-be.onrender.com/employeepayrolldata"
+          "https://gr2-hr-management-be.onrender.com/employeepayrolldata",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json",
+            },
+          }
         );
-        console.log(response.data);
+
         this.payrollData = response.data;
+        this.rawData = response.data;
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "You are not authorized! Please login again!",
+        });
       }
     },
     handleBonus(email) {
@@ -127,7 +136,8 @@ export default {
             https://gr2-hr-management-be.onrender.com/updateemployeebonus/`;
 
             const response = await fetch(
-              url + "?" +
+              url +
+                "?" +
                 new URLSearchParams({
                   email: email,
                   bonus: bonus,
@@ -159,10 +169,22 @@ export default {
             icon: "success",
             title: "Bonus updated successfully",
             text: "Employee bonus has been updated",
-           
           });
         }
       });
+    },
+  },
+
+  watch: {
+    searchName: function (val) {
+      if (val === "") {
+        this.payrollData = this.rawData;
+        return this.payrollData;
+      } else {
+        this.payrollData = this.payrollData.filter((item) => {
+          return item.email.toLowerCase().includes(val.toLowerCase());
+        });
+      }
     },
   },
 };

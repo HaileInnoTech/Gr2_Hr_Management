@@ -5,7 +5,7 @@
         class="grid grid-cols-1 gap-x-8 gap-y-6 px-40 my-10 text-base lg:flex lg:justify-between lg: leading-7 text-black sm:grid-cols-2 md:flex lg:gap-x-10"
       >
         <router-link
-          to="/dashboard/menu/employee/data"
+          :to="{ name: 'Mainpage', params: { email: email, role: role } }"
           class="flex-row justify-center"
         >
           <img src="../../assets/image.png" alt="" />
@@ -25,7 +25,8 @@
 </template>
 
 <script>
-export default {};
+import { defineProps } from "vue";
+defineProps(["email", "role"]);
 </script>
 
 <style></style>

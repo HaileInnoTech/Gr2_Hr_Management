@@ -27,6 +27,262 @@
         placeholder="Search employee by Name"
       />
     </div>
+    <div
+      v-show="!isUser"
+      class="relative flex justify-end items-center my-5 w-full h-12 focus-within:shadow-lg overflow-hidden"
+    >
+      <button
+        type="button"
+        @click="openModal"
+        class="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+      >
+        Open dialog
+      </button>
+    </div>
+
+    <div>
+      <TransitionRoot appear :show="isOpen" as="template">
+        <Dialog as="div" @close="closeModal" class="relative z-10">
+          <TransitionChild
+            as="template"
+            enter="duration-300 ease-out"
+            enter-from="opacity-0"
+            enter-to="opacity-100"
+            leave="duration-200 ease-in"
+            leave-from="opacity-100"
+            leave-to="opacity-0"
+          >
+            <div class="fixed inset-0 bg-black/25" />
+          </TransitionChild>
+
+          <div class="fixed inset-0 overflow-y-auto">
+            <div
+              class="flex min-h-full items-center justify-center p-4 text-center"
+            >
+              <TransitionChild
+                as="template"
+                enter="duration-300 ease-out"
+                enter-from="opacity-0 scale-95"
+                enter-to="opacity-100 scale-100"
+                leave="duration-200 ease-in"
+                leave-from="opacity-100 scale-100"
+                leave-to="opacity-0 scale-95"
+              >
+                <DialogPanel
+                  class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                >
+                  <DialogTitle
+                    as="h3"
+                    class="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    Register new Accouter
+                  </DialogTitle>
+                  <div class="mt-2">
+                    <div>
+                      <form>
+                        <div class="mb-6">
+                          <label
+                            for="id"
+                            class="block mb-2 text-sm font-medium text-gray-900"
+                            >ID</label
+                          >
+                          <input
+                            type="text"
+                            id="password"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                            placeholder="sws00129"
+                            required
+                          />
+                        </div>
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                          <div>
+                            <label
+                              for="first_name"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >First name</label
+                            >
+                            <input
+                              type="text"
+                              id="first_name"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                              placeholder="John"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label
+                              for="last_name"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >Last name</label
+                            >
+                            <input
+                              type="text"
+                              id="last_name"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                              placeholder="Doe"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label
+                              for="gender"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >Gender</label
+                            >
+                            <select
+                              id="countries"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            >
+                              <option selected>Choose one</option>
+                              <option value="male">Male</option>
+                              <option value="female">Female</option>
+                              <option value="NA">Not Prefer</option>
+                            </select>
+                          </div>
+
+                          <div>
+                            <label
+                              for="phone"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >Phone number</label
+                            >
+                            <input
+                              type="tel"
+                              id="phone"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                              placeholder="123-45-678"
+                              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label
+                              for="Address"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >Address</label
+                            >
+                            <input
+                              type="text"
+                              id="address"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                              placeholder="78/K4 Cong Hoa"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label
+                              for="Department"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >Department</label
+                            >
+                            <input
+                              type="text"
+                              id="Department"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                              placeholder="Technical"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label
+                              for="Position"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >Position</label
+                            >
+                            <input
+                              type="text"
+                              id="Position"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                              placeholder="Technical Intern"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label
+                              for="role"
+                              class="block mb-2 text-sm font-medium text-gray-900"
+                              >Role</label
+                            >
+                            <select
+                              id="role"
+                              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            >
+                              <option selected>Choose one</option>
+                              <option value="admin">Admin</option>
+                              <option value="user">User</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="mb-6">
+                          <label
+                            for="email"
+                            class="block mb-2 text-sm font-medium text-gray-900"
+                            >Email address</label
+                          >
+                          <input
+                            type="email"
+                            id="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                            placeholder="john.doe@company.com"
+                            required
+                          />
+                        </div>
+                        <div class="mb-6">
+                          <label
+                            for="password"
+                            class="block mb-2 text-sm font-medium text-gray-900"
+                            >Password</label
+                          >
+                          <input
+                            v-model="password"
+                            type="password"
+                            id="password"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400"
+                            placeholder="•••••••••"
+                            required
+                          />
+                        </div>
+                        <div class="mb-6">
+                          <label
+                            for="confirm_password"
+                            class="block mb-2 text-sm font-medium text-gray-900"
+                            >Confirm password</label
+                          >
+                          <input
+                            v-model="confirm_password"
+                            type="password"
+                            id="confirm_password"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="•••••••••"
+                            required
+                          />
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 flex justify-around">
+                    <button
+                      type="button"
+                      class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                      @click="signinHandle"
+                    >
+                      Register
+                    </button>
+                    <button
+                      type="reset"
+                      class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </DialogPanel>
+              </TransitionChild>
+            </div>
+          </div>
+        </Dialog>
+      </TransitionRoot>
+    </div>
 
     <ul class="grid grid-cols-1 sm:grid-cols-4 gap-4">
       <li class=" " v-for="(item, index) in employeeData" :key="index">
@@ -69,7 +325,10 @@
 
               <div class="text-center my-3">
                 <router-link
-                  :to="{ name: 'Individual', params: { email: item.email } }"
+                  :to="{
+                    name: 'Individual',
+                    params: { role: role, email: email, curEmp: item.email },
+                  }"
                   class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
                   >View Profile</router-link
                 >
@@ -134,7 +393,19 @@
 
 <script setup>
 import { ref, onMounted, computed, compile, watch } from "vue";
+import {
+  TransitionRoot,
+  TransitionChild,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/vue";
+const isOpen = ref(false);
+
 import axios from "axios";
+import { defineProps } from "vue";
+import Swal from "sweetalert2";
+defineProps(["email", "role"]);
 
 const searchName = ref("");
 const employeeData = ref([]);
@@ -142,29 +413,62 @@ let start = ref(0);
 let end = ref(0);
 let currentPage = ref(1);
 let itemperPage = ref(8);
-let emploteeQty = ref();
+let employeeQty = ref();
 let totalPage = ref();
 let data = ref();
 let rawdata = ref();
 
+function closeModal() {
+  isOpen.value = false;
+}
+function openModal() {
+  isOpen.value = true;
+}
+const isUser = ref(false);
+
+const checkCurrentUser = () => {
+  const currentUserRole = localStorage.getItem("role");
+  isUser.value = currentUserRole === "user";
+};
+
 onMounted(async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  checkCurrentUser();
+
   try {
-    const response = await axios.get(
-      "https://gr2-hr-management-be.onrender.com/employeedata"
+    const { data, status } = await axios.get(
+      "https://gr2-hr-management-be.onrender.com/employeedata",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
-    emploteeQty = response.data.length;
+    if (status === 200 || status === 304 || status === 201) {
+      employeeQty.value = data.length;
 
-    totalPage.value = Math.ceil(emploteeQty / itemperPage.value);
-
-    start.value = (currentPage.value - 1) * itemperPage.value;
-    end.value = currentPage.value * itemperPage.value;
-    rawdata.value = response.data;
-    data = response.data;
-    employeeData.value = data.slice(start.value, end.value);
+      totalPage.value = Math.ceil(employeeQty / itemperPage.value);
+      start.value = (currentPage.value - 1) * itemperPage.value;
+      end.value = currentPage.value * itemperPage.value;
+      rawdata.value = data;
+      employeeData.value = data.slice(start.value, end.value);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
   } catch (error) {
-    console.error(error);
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You are not authorized! Please login again!",
+    });
   }
 });
+
 function onClickHandler() {
   start.value = (currentPage.value - 1) * itemperPage.value;
   if (currentPage.value * itemperPage.value > emploteeQty) {

@@ -214,7 +214,7 @@ export default {
   },
   async beforeMount() {
     this.chartData2 = this.chartData();
-    this.email = this.$route.params.email;
+    this.email = this.$route.params.curEmp;
 
     const userData = await axios
       .get("https://gr2-hr-management-be.onrender.com/employeedatabyemail", {

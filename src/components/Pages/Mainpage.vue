@@ -29,15 +29,14 @@
     </div>
     <div
       v-show="!isUser"
-      class="relative flex justify-end items-center my-5 w-full h-12 focus-within:shadow-lg overflow-hidden"
+      class="relative flex justify-end items-center my-5 w-full h-12 "
     >
       <button
         type="button"
         @click="openModal"
         class="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
       >
-        Open dialog
-      </button>
+Add User      </button>
     </div>
 
     <div>
@@ -370,14 +369,14 @@
             <span class="font-medium"></span>
             {{ " " }}
             of
-            {{ emploteeQty }}
+            {{ employeeQty }}
             <span class="font-medium"></span>
             {{}} results
           </p>
         </div>
         <div class="flex items-center justify-center">
           <vue-awesome-paginate
-            :total-items="emploteeQty"
+            :total-items="employeeQty"
             v-model="currentPage"
             :items-per-page="8"
             :max-pages-shown="3"
@@ -415,7 +414,7 @@ let currentPage = ref(1);
 let itemperPage = ref(8);
 let employeeQty = ref();
 let totalPage = ref();
-let data = ref();
+let data;
 let rawdata = ref();
 
 function closeModal() {
@@ -436,7 +435,7 @@ onMounted(async () => {
   checkCurrentUser();
 
   try {
-    const { data, status } = await axios.get(
+    const  response = await axios.get(
       "https://gr2-hr-management-be.onrender.com/employeedata",
       {
         headers: {
@@ -445,21 +444,15 @@ onMounted(async () => {
         },
       }
     );
-    if (status === 200 || status === 304 || status === 201) {
-      employeeQty.value = data.length;
-
+    data =   response.data;
+    employeeQty.value = data.length;
+      
       totalPage.value = Math.ceil(employeeQty / itemperPage.value);
       start.value = (currentPage.value - 1) * itemperPage.value;
       end.value = currentPage.value * itemperPage.value;
       rawdata.value = data;
       employeeData.value = data.slice(start.value, end.value);
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
-    }
+      
   } catch (error) {
     Swal.fire({
       icon: "error",
@@ -471,8 +464,8 @@ onMounted(async () => {
 
 function onClickHandler() {
   start.value = (currentPage.value - 1) * itemperPage.value;
-  if (currentPage.value * itemperPage.value > emploteeQty) {
-    end.value = emploteeQty;
+  if (currentPage.value * itemperPage.value > employeeQty) {
+    end.value = employeeQty;
   } else {
     end.value = currentPage.value * itemperPage.value;
   }
@@ -482,10 +475,10 @@ function onClickHandler() {
 function nextPage() {
   if (currentPage.value < totalPage.value) {
     currentPage.value++;
-    console.log(emploteeQty);
+    console.log(employeeQty);
     start.value = (currentPage.value - 1) * itemperPage.value;
-    if (currentPage.value * itemperPage.value > emploteeQty) {
-      end.value = emploteeQty;
+    if (currentPage.value * itemperPage.value > employeeQty) {
+      end.value = employeeQty;
     } else {
       end.value = currentPage.value * itemperPage.value;
     }
@@ -507,8 +500,8 @@ function prePage() {
   } else {
     currentPage.value = totalPage.value;
     start.value = (currentPage.value - 1) * itemperPage.value;
-    if (currentPage.value * itemperPage.value > emploteeQty) {
-      end.value = emploteeQty;
+    if (currentPage.value * itemperPage.value > employeeQty) {
+      end.value = employeeQty;
     } else {
       end.value = currentPage.value * itemperPage.value;
     }

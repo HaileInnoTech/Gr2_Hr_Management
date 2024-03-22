@@ -130,10 +130,11 @@ export default {
         showLoaderOnConfirm: true,
         preConfirm: async (bonus) => {
           try {
+            
             console.log(email, bonus);
 
             const url = `
-            https://gr2-hr-management-be.onrender.com/updateemployeebonus/`;
+            https://gr2-hr-management-be.onrender.com/updateemployeebonus`;
 
             const response = await fetch(
               url +
@@ -154,7 +155,7 @@ export default {
           ${JSON.stringify(await response.json())}
         `);
             }
-            this.fetchPayrollData();
+            this.fetchPayrollData(localStorage.getItem("accessToken"));
             return response.json();
           } catch (error) {
             Swal.showValidationMessage(`

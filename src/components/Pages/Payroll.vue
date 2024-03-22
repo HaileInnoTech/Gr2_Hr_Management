@@ -107,6 +107,7 @@ export default {
             headers: {
               Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json",
+              AccessControlAllowOrigin: "*",
             },
           }
         );
@@ -147,6 +148,8 @@ export default {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
+                  AccessControlAllowOrigin: "*",
+
                 },
               }
             );

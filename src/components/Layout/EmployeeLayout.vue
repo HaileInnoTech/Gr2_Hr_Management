@@ -8,32 +8,37 @@
       >
         <router-link
           :to="{ name: 'Mainpage', params: { email: email, role: role } }"
-          class="flex-row justify-center w-full border-r-2 border-gray-900"
+          class="flex-row justify-center w-full "
         >
           <div
             class="text-2xl flex justify-center w-full"
             exact
             :class="{
-              'bg-blue-500': $route.path.includes('data'),
+              'bg-blue-500 text-white': $route.path.includes('data'),
             }"
           >
             Employee Information
           </div>
         </router-link>
+        
+        <div class="h-full">|</div>
+
         <router-link
           :to="{ name: 'Payroll', params: { email: email, role: role } }"
-          class="flex-row justify-center w-full border-r-2 border-gray-900"
+          class="flex-row justify-center w-full "
         >
           <div
             class="text-2xl flex justify-center"
             exact
             :class="{
-              'bg-blue-500': $route.path.includes('payroll'),
+              'bg-blue-500 text-white': $route.path.includes('payroll'),
             }"
           >
-            Payroll Mangement
+            Payroll Management
           </div>
         </router-link>
+        <div class="h-full">|</div>
+
         <div class="flex-row justify-center w-full">
           <div class="text-2xl flex justify-center">Overall Tracking</div>
         </div>

@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                echo 'This is from GitHub Webhook'
                 // Add your build steps here
             }
         }

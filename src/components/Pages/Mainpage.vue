@@ -24,7 +24,7 @@
         class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
         type="text"
         v-model="searchName"
-        placeholder="Search employee by Name"
+        placeholder="Search mployee by Name"
       />
     </div>
     <div

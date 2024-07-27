@@ -1,9 +1,6 @@
 <template>
   <router-view></router-view>
-  <h1>helloWorld</h1>
-    <h1>helloWorld</h1>
-  <h1>helloWorld</h1>
-  <h1>helloWorld</h1>
+ 
 
 </template>
 

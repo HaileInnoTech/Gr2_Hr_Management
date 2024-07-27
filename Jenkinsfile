@@ -2,31 +2,42 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building...'
-                echo 'This is from GitHub Webhook'
-                echo 'This is from GitHub Webhook'
-                echo 'This is from GitHub Webhook'
-                echo 'This is from GitHub Webhook'
-                echo 'This is from GitHub Webhook'
-
-                // Add your build steps here
+                checkout scm
             }
         }
 
-        stage('Test') {
+        stage('Install Dependencies') {
             steps {
-                echo 'Testing...'
-                // Add your test steps here
+                script {
+                    if (fileExists('package.json')) {
+                        sh 'npm install'
+                    }
+                }
             }
         }
 
-        stage('Deploy') {
+        stage('Run Tests') {
             steps {
-                echo 'Deploying...'
-                // Add your deploy steps here
+                script {
+                    if (fileExists('package.json')) {
+                        sh 'npm test'
+                    }
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if the build succeeds'
+        }
+        failure {
+            echo 'This will run only if the build fails'
         }
     }
 }

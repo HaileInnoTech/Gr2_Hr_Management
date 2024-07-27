@@ -1,6 +1,8 @@
 <template>
   <div class="grid h-screen place-items-center bg-black">
     <h1 class="text-white text-5xl">Hr Management</h1>
+    <h1 class="text-white text-5xl">Hr Management</h1>
+    <h1 class="text-white text-5xl">Hr Management</h1>
 
     <div
       class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-40"

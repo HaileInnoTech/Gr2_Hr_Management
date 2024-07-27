@@ -142,6 +142,7 @@
           <div><strong>Date: </strong> {{ value.date }}</div>
           <div><strong>Check In: </strong> {{ value.checkin }}</div>
           <div><strong>Check Out: </strong> {{ value.checkout }}</div>
+          <div><strong>Check Out: </strong> {{ value.checkout }}</div>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <div
       class="relative flex items-center my-5 w-full h-12 rounded-full focus-within:shadow-lg bg-white overflow-hidden border border-gray-300"
     >
-      <div class="grid place-items-center h-full w-12 text-gray-200">
+      <div class="grid place-items-center h-full w-12 text-gray-300">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
